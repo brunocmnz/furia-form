@@ -51,7 +51,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-    border-bottom: solid 1px rgba(0, 0, 0, 0.333);
 }
 
 .interesses div {
@@ -97,4 +96,15 @@ input:valid,
 textarea:valid,
 select:valid {
     color: #000 !important;
+}
+
+
+.form-check{
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+.salvar-container{
+    border-top: solid 1px rgba(0, 0, 0, 0.333);
 }
