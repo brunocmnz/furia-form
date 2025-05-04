@@ -100,11 +100,11 @@ estadoSelect.addEventListener("change", () => {
 });
 
 // Mostrar campo "Outros"
-document.getElementById("outros").addEventListener("change", function () {
-  document.getElementById("campoOutrosTexto").style.display = this.checked
-    ? "block"
-    : "none";
-});
+// document.getElementById("outros").addEventListener("change", function () {
+//   document.getElementById("campoOutrosTexto").style.display = this.checked
+//     ? "block"
+//     : "none";
+// });
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -170,10 +170,9 @@ form.addEventListener("submit", async function (e) {
     mensagensErro.classList.add("d-none");
   }
 
-  const outrosCheck = document.getElementById("outros").checked;
   const outrosTexto = document.getElementById("outrosTexto").value.trim();
   const interessesList = Array.from(interesses).map((cb) => cb.value);
-  if (outrosCheck && outrosTexto) interessesList.push(`Outros: ${outrosTexto}`);
+  if (outrosTexto) interessesList.push(`Outros: ${outrosTexto}`);
 
   const atividadesList = Array.from(atividades).map((cb) => cb.value);
   const eventosList = Array.from(eventos).map((cb) => cb.value);
@@ -182,6 +181,10 @@ form.addEventListener("submit", async function (e) {
   const comprasList = Array.from(compras).map((cb) => cb.value);
   const compraOutro = document.getElementById("compraOutro").value.trim();
   if (compraOutro) comprasList.push(compraOutro);
+
+  const instagram = document.getElementById("instagram").value.trim();
+  const twitter = document.getElementById("twitter").value.trim();
+  const tiktok = document.getElementById("tiktok").value.trim();
 
   const data = {
     nome,
@@ -193,8 +196,15 @@ form.addEventListener("submit", async function (e) {
     eventos: eventosList,
     compras: comprasList,
     valorGasto,
-    atualizadoEm: new Date(),
+    redesSociais: {
+      instagram,
+      twitter,
+      tiktok,
+    },
+    atualizadoEm: new Date().toISOString(), // formato ideal para o Firestore
   };
+
+  console.log("Dados sendo enviados:", data);
 
   try {
     const query = await window.db
@@ -208,9 +218,11 @@ form.addEventListener("submit", async function (e) {
       await db.collection("cadastros").add(data);
       alert("Cadastro criado com sucesso!");
     }
+    if (cpf && cpf.length >= 11) {
+      window.location.href = `upload.html?cpf=${encodeURIComponent(cpf)}`;
+    }
+    console.log("cpf: ", cpf);
     form.reset();
-    window.location.href = `upload.html?cpf=${encodeURIComponent(cpf)}`;
-    console.log("cpf: ",cpf);
   } catch (err) {
     console.error("Erro ao salvar:", err);
     alert("Erro ao salvar. Veja o console.");
