@@ -197,7 +197,7 @@ form.addEventListener("submit", async function (e) {
   };
 
   try {
-    const query = await db
+    const query = await window.db
       .collection("cadastros")
       .where("cpf", "==", cpf)
       .get();
@@ -209,7 +209,8 @@ form.addEventListener("submit", async function (e) {
       alert("Cadastro criado com sucesso!");
     }
     form.reset();
-    window.location.href = "upload.html";
+    window.location.href = `upload.html?cpf=${encodeURIComponent(cpf)}`;
+    console.log("cpf: ",cpf);
   } catch (err) {
     console.error("Erro ao salvar:", err);
     alert("Erro ao salvar. Veja o console.");

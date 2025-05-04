@@ -13,7 +13,7 @@
 <body class="bg-light">
     <div class="container mt-5">
         <div class="card shadow-lg p-4">
-            <h2 class="mb-4 text-center titulo-form">Cadastro do Fã</h2>
+            <h2 class="mb-4 text-center titulo-form">Conte para a FURIA mais sobre você</h2>
             <form id="cadastroForm">
                 <!-- mensagens de erro -->
                 <div id="mensagensErro" class="alert alert-danger d-none"></div>
@@ -82,8 +82,9 @@
                 <!-- Interesses -->
                 <div class="mb-3 interesses">
                     <label class="form-label label-info">Interesses em modalidades da FURIA</label>
-                    <div class="row">
-                        <div class="col-md-6 d-flex flex-column gap-2">
+                    <div>
+
+                        <div class="col-md-3 d-flex flex-column gap-2">
                             <div class="form-check"><input class="form-check-input" type="checkbox" value="CS2"
                                     id="cs2" /><label class="form-check-label" for="cs2">CS2</label></div>
                             <div class="form-check"><input class="form-check-input" type="checkbox" value="Valorant"
@@ -110,17 +111,13 @@
                             <div class="form-check"><input class="form-check-input" type="checkbox"
                                     value="Kings League / FUT7" id="kingsleague" /><label class="form-check-label"
                                     for="kingsleague">Kings League</label></div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox" value="Outros"
-                                    id="outros" /><label class="form-check-label" for="outros">Outros</label></div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Outros texto -->
-                <div class="mb-3 mt-2" id="campoOutrosTexto" style="display: none;">
-                    <input type="text" class="form-control" id="outrosTexto"
+                    </div>
+                    <input type="text" class="form-control mt-2" id="outrosTexto"
                         placeholder="Descreva outras modalidades que te interessam">
                 </div>
+
 
                 <!-- Atividades -->
                 <div class="mb-3 atividades">
@@ -133,7 +130,8 @@
                     <div class="form-check"><input class="form-check-input" type="checkbox" value="Redes Sociais"
                             id="atividadeRedes"><label class="form-check-label" for="atividadeRedes">Redes
                             Sociais</label></div>
-                    <input type="text" class="form-control mt-2" id="atividadeOutro" placeholder="Outros tipo de atividade">
+                    <input type="text" class="form-control mt-2" id="atividadeOutro"
+                        placeholder="Outros tipo de atividade">
                 </div>
 
                 <!-- Eventos -->
@@ -173,13 +171,34 @@
                     <input type="text" class="form-control" id="valorGasto" placeholder="R$ 0,00">
                 </div>
 
-                <button type="submit" class="botao-salvar btn btn-primary w-100">Salvar Cadastro</button>
+                <!-- Redes sociais-->
+                <div>
+                    <label class="form-label label-info">Redes sociais</label>
+                    <div class="mb-3">
+                        <label for="instagram" class="form-label">Instagram</label>
+                        <input type="text" class="form-control" id="instagram" placeholder="@seuUsuario" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="twitter" class="form-label">Twitter / X</label>
+                        <input type="text" class="form-control" id="twitter" placeholder="@seuUsuario" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tiktok" class="form-label">TikTok</label>
+                        <input type="text" class="form-control" id="tiktok" placeholder="@seuUsuario" />
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit" class="botao-salvar btn btn-primary w-100">Salvar Cadastro</button>
+                </div>
             </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="firebaseConfig.js"></script>
-    <script src="app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
