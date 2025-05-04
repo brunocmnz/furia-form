@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Know Your Fan - Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reset.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="mb-4 text-center titulo-form">Cadastro do Fã</h2>
+
+            <form id="cadastroForm">
+
+                <div class="mb-3">
+                    <label for="nome" class="form-label label-info">Nome completo</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cpf" class="form-label label-info">CPF</label>
+                    <input type="text" class="form-control" id="cpf" placeholder="Digite seu CPF" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label label-info">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+                </div>
+
+                <div>
+                    <label class="form-label bold label-info endereco">Endereço</label>
+
+                    <div class="mb-3">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="cep" placeholder="Ex: 12345-678" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rua" class="form-label">Rua</label>
+                        <input type="text" class="form-control" id="rua" placeholder="Digite o nome da rua" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" placeholder="Digite seu bairro" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" required>
+                                <option value="">Carregando estados...</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="cidade" class="form-label">Cidade</label>
+                            <select class="form-select" id="cidade" required>
+                                <option value="">Selecione um estado primeiro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="numero" class="form-label">Número</label>
+                            <input type="text" class="form-control" id="numero" placeholder="Número da residência"
+                                required>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="complemento" class="form-label">Complemento (opcional)</label>
+                            <input type="text" class="form-control" id="complemento"
+                                placeholder="Apartamento, bloco, etc.">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interesses -->
+                <div class="mb-3 interesses">
+                    <label class="form-label label-info">Interesses em modalidades da FURIA</label>
+                    <div >
+                        <!-- Primeira coluna -->
+                        <div class="col-md-6 d-flex flex-column gap-2 text-start">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="CS2" id="cs2" />
+                                <label class="form-check-label" for="cs2">CS2 (Counter-Strike 2)</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Valorant" id="valorant" />
+                                <label class="form-check-label" for="valorant">Valorant</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="PUBG" id="pubg" />
+                                <label class="form-check-label" for="pubg">PUBG</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="League of Legends" id="lol" />
+                                <label class="form-check-label" for="lol">League of Legends</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Apex Legends" id="apex" />
+                                <label class="form-check-label" for="apex">Apex Legends</label>
+                            </div>
+                        </div>
+
+                        <!-- Segunda coluna -->
+                        <div class="col-md-6 d-flex flex-column gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Rainbow Six Siege" id="r6" />
+                                <label class="form-check-label" for="r6">Rainbow Six Siege</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Rocket League" id="rocket" />
+                                <label class="form-check-label" for="rocket">Rocket League</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Dota 2" id="dota2" />
+                                <label class="form-check-label" for="dota2">Dota 2</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Kings League / FUT7"
+                                    id="kingsleague" />
+                                <label class="form-check-label" for="kingsleague">Kings League / FUT7</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Outros" id="outros" />
+                                <label class="form-check-label" for="outros">Outros</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campo "Outros" -->
+                <div class="mb-3 mt-2" id="campoOutrosTexto" style="display: none;">
+                    <input type="text" class="form-control" id="outrosTexto"
+                        placeholder="Descreva outras modalidades que te interessam">
+                </div>
+
+
+                <!-- Campo "Outros" aparece se checkbox for marcado -->
+                <div class="mb-3 mt-2" id="campoOutrosTexto" style="display: none;">
+                    <input type="text" class="form-control" id="outrosTexto"
+                        placeholder="Descreva outras modalidades que te interessam">
+                </div>
+
+
+                <!-- Campo de texto exibido apenas se "Outros" for marcado -->
+                <div class="mb-3 mt-2" id="campoOutrosTexto" style="display: none;">
+                    <input type="text" class="form-control" id="outrosTexto"
+                        placeholder="Descreva outras modalidades que te interessam">
+                </div>
+
+                <div class="mb-3 mt-2" id="campoOutrosTexto" style="display: none;">
+                    <input type="text" class="form-control" id="outrosTexto"
+                        placeholder="Descreva outras modalidades que te interessam">
+                </div>
+
+                <button type="submit" class="botao-salvar btn btn-primary w-100">Salvar Cadastro</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="firebaseConfig.js"></script>
+</body>
+
+</html>
