@@ -129,35 +129,37 @@ form.addEventListener("submit", async function (e) {
 
   if (!nome) erros.push("- Nome completo");
   if (!cpf) erros.push("- CPF");
-  if (!email.includes("@") || !email.includes("."))
-    erros.push("- Email válido");
-  if (!cep) erros.push("- CEP");
-  if (!rua) erros.push("- Rua");
-  if (!numero) erros.push("- Número");
-  if (!bairro) erros.push("- Bairro");
-  if (!cidade) erros.push("- Cidade");
-  if (!estado) erros.push("- Estado");
+  // if (!email.includes("@") || !email.includes("."))
+  //   erros.push("- Email válido");
+  // if (!cep) erros.push("- CEP");
+  // if (!rua) erros.push("- Rua");
+  // if (!numero) erros.push("- Número");
+  // if (!bairro) erros.push("- Bairro");
+  // if (!cidade) erros.push("- Cidade");
+  // if (!estado) erros.push("- Estado");
 
   const interesses = document.querySelectorAll(
     ".interesses input[type='checkbox']:checked"
   );
-  if (interesses.length === 0) erros.push("- Pelo menos um interesse");
 
-  const atividades = document.querySelectorAll(".atividades input:checked");
-  if (atividades.length === 0) erros.push("- Pelo menos uma atividade como fã");
+  // if (interesses.length === 0) erros.push("- Pelo menos um interesse");
 
-  const eventos = document.querySelectorAll(".eventos input:checked");
-  const eventoOutro = document.getElementById("eventoOutro").value.trim();
-  if (eventos.length === 0 && !eventoOutro)
-    erros.push("- Pelo menos um evento ou outro evento descrito");
+  // const atividades = document.querySelectorAll(".atividades input:checked");
+  // if (atividades.length === 0) erros.push("- Pelo menos uma atividade como fã");
 
-  const compras = document.querySelectorAll(".compras input:checked");
-  const comprasOutro = document.getElementById("compraOutro");
-  if (compras.length === 0 && !comprasOutro.value.trim())
-    erros.push("- Pelo menos uma compra (ou outros tipos de compra)");
+  // const eventos = document.querySelectorAll(".eventos input:checked");
+  // const eventoOutro = document.getElementById("eventoOutro").value.trim();
 
-  if (isNaN(valorGasto) || valorGasto <= 0)
-    erros.push("- Valor estimado gasto nas compras");
+  // if (eventos.length === 0 && !eventoOutro)
+  //   erros.push("- Pelo menos um evento ou outro evento descrito");
+
+  // const compras = document.querySelectorAll(".compras input:checked");
+  // const comprasOutro = document.getElementById("compraOutro");
+  // if (compras.length === 0 && !comprasOutro.value.trim())
+  //   erros.push("- Pelo menos uma compra (ou outros tipos de compra)");
+
+  // if (isNaN(valorGasto) || valorGasto <= 0)
+  //   erros.push("- Valor estimado gasto nas compras");
 
   if (erros.length > 0) {
     mensagensErro.classList.remove("d-none");
@@ -174,11 +176,11 @@ form.addEventListener("submit", async function (e) {
   const interessesList = Array.from(interesses).map((cb) => cb.value);
   if (outrosTexto) interessesList.push(`Outros: ${outrosTexto}`);
 
-  const atividadesList = Array.from(atividades).map((cb) => cb.value);
-  const eventosList = Array.from(eventos).map((cb) => cb.value);
-  if (eventoOutro) eventosList.push(eventoOutro);
+  // const atividadesList = Array.from(atividades).map((cb) => cb.value);
+  // const eventosList = Array.from(eventos).map((cb) => cb.value);
+  // if (eventoOutro) eventosList.push(eventoOutro);
 
-  const comprasList = Array.from(compras).map((cb) => cb.value);
+  // const comprasList = Array.from(compras).map((cb) => cb.value);
   const compraOutro = document.getElementById("compraOutro").value.trim();
   if (compraOutro) comprasList.push(compraOutro);
 
@@ -189,42 +191,62 @@ form.addEventListener("submit", async function (e) {
   const data = {
     nome,
     cpf,
-    email,
-    endereco: { rua, numero, complemento, bairro, cidade, estado },
-    interesses: interessesList,
-    atividades: atividadesList,
-    eventos: eventosList,
-    compras: comprasList,
-    valorGasto,
+    endereco: "endereco",
+    interesses: "interessesList",
+    atividades: "atividadesList",
+    eventos: "eventosList",
+    compras: "comprasList",
+    valorGasto: "valorGasto",
     redesSociais: {
-      instagram,
-      twitter,
-      tiktok,
+      INSTA: "instagram",
+      x: "twitter",
+      TIK: "tiktok",
     },
     atualizadoEm: new Date().toISOString(), // formato ideal para o Firestore
   };
 
+  // const data = {
+  //   nome,
+  //   cpf,
+  //   email,
+  //   endereco: { rua, numero, complemento, bairro, cidade, estado },
+  //   interesses: interessesList,
+  //   atividades: atividadesList,
+  //   eventos: eventosList,
+  //   compras: comprasList,
+  //   valorGasto,
+  //   redesSociais: {
+  //     instagram,
+  //     twitter,
+  //     tiktok,
+  //   },
+  //   atualizadoEm: new Date().toISOString(), // formato ideal para o Firestore
+  // };
+
   console.log("Dados sendo enviados:", data);
 
-  try {
-    const query = await window.db
-      .collection("cadastros")
-      .where("cpf", "==", cpf)
-      .get();
-    if (!query.empty) {
-      await query.docs[0].ref.update(data);
-      alert("Cadastro atualizado!");
-    } else {
-      await db.collection("cadastros").add(data);
-      alert("Cadastro criado com sucesso!");
-    }
+  // try {
+    // const query = await window.db
+    //   .collection("cadastros")
+    //   .where("cpf", "==", cpf)
+    //   .get();
+    // if (!query.empty) {
+    //   await query.docs[0].ref.update(data);
+    //   alert("Cadastro atualizado!");
+    // } else {
+    //   await db.collection("cadastros").add(data);
+
+    //   alert("Cadastro criado com sucesso!");
+    // }
+    
     if (cpf && cpf.length >= 11) {
+      sessionStorage.setItem("dadosCadastro", JSON.stringify(data));
       window.location.href = `upload.html?cpf=${encodeURIComponent(cpf)}`;
     }
     console.log("cpf: ", cpf);
-    form.reset();
-  } catch (err) {
-    console.error("Erro ao salvar:", err);
-    alert("Erro ao salvar. Veja o console.");
-  }
+    // form.reset();
+  // } catch (err) {
+  //   console.error("Erro ao salvar:", err);
+  //   alert("Erro ao salvar. Veja o console.");
+  // }
 });
