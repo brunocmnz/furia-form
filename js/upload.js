@@ -35,7 +35,7 @@ const enviar = () => {
     );
 
     try {
-      const apiKey = process.env.GOOGLE_API_KEY;
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
       const resposta = await fetch(
         `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`,
         {
