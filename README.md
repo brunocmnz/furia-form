@@ -1,8 +1,10 @@
 # 📄 Formulário Know Your Fan - FURIA
 
-Acesse o projeto em: [https://furia-form.vercel.app](https://furia-form.vercel.app)
-
 Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** e **JavaScript puro (sem frameworks)**. Ele implementa um fluxo de cadastro de fãs com **verificação automatizada de identidade** (nome e CPF) usando **OCR da API Google Cloud Vision** e integração com **Firebase Firestore** como banco de dados.
+
+O sistema está **hospedado na plataforma Vercel** e pode ser acessado publicamente pelo link abaixo:
+
+🔗 **Acesse agora**: [https://furia-form.vercel.app](https://furia-form.vercel.app)
 
 ---
 
