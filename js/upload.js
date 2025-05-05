@@ -13,105 +13,128 @@ const validarCPF = (cpf) => {
   return resto === parseInt(cpf.charAt(10));
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const cpfUrl = urlParams.get("cpf") || "";
-  document.getElementById("cpfOculto").value = cpfUrl;
+const normalizar = (str) =>
+  str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
 
-  document
-    .getElementById("uploadForm")
-    .addEventListener("submit", async function (e) {
-      e.preventDefault();
+const enviar = () => {
+  const file = document.getElementById("documento").files[0];
+  const dados = JSON.parse(sessionStorage.getItem("dadosCadastro")) || {};
+  const cpfEsperado = (dados.cpf || "").replace(/\D/g, "");
+  const nomeCadastro = dados.nome || "";
 
-      const file = document.getElementById("documento").files[0];
-      const cpfEsperado = cpfUrl.replace(/\D/g, "");
+  if (!file) return alert("A Imagem é obrigatória!");
 
-      if (!file) return alert("Selecione uma imagem.");
+  const reader = new FileReader();
+  reader.onload = async function (e) {
+    const base64 = e.target.result.replace(
+      /^data:image\/(png|jpeg);base64,/,
+      ""
+    );
 
-      const formData = new FormData();
-      formData.append("apikey", "helloworld");
-      formData.append("language", "por");
-      formData.append("isOverlayRequired", "false");
-      formData.append("file", file);
+    try {
+      const resposta = await fetch(
+        "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBb_ql2JIMIj14PIG5ouGM0sVe-0asc0mo",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            requests: [
+              {
+                image: { content: base64 },
+                features: [{ type: "TEXT_DETECTION" }],
+              },
+            ],
+          }),
+        }
+      );
+
+      const resultado = await resposta.json();
+      const texto = resultado?.responses?.[0]?.fullTextAnnotation?.text || "";
+
+      console.log("Texto reconhecido:", texto);
+
+      const textoLimpo = normalizar(texto);
+      const nomeInformado = normalizar(nomeCadastro)
+        .split(/\s+/)
+        .filter((p) => p.length > 1);
+      const linhas = textoLimpo.split("\n");
+
+      let nomeExtraido = [];
+      for (let i = 0; i < linhas.length; i++) {
+        if (linhas[i].includes("nome")) {
+          nomeExtraido = (linhas[i + 1] || "")
+            .split(/\s+/)
+            .filter((p) => /^[a-z]{2,}$/.test(p));
+          break;
+        }
+      }
+
+      console.log("Nome extraído:", nomeExtraido);
+
+      const nomeValido =
+        nomeInformado.every((p) => nomeExtraido.includes(p)) &&
+        nomeExtraido.every((p) => nomeInformado.includes(p));
+
+      if (!nomeValido) {
+        alert("❌ O Nome informado não confere com o documento.");
+        return;
+      }
+
+      const cpfs = texto.match(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/g) || [];
+      let cpfExtraido = "";
+      for (const c of cpfs) {
+        const puro = c.replace(/\D/g, "");
+        if (validarCPF(puro)) {
+          cpfExtraido = puro;
+          break;
+        }
+      }
+
+      if (!cpfExtraido) return alert("❌ Nenhum CPF válido detectado.");
+      if (cpfExtraido !== cpfEsperado)
+        return alert("❌ O CPF informado não confere com o documento.");
+
+      alert(
+        "Nome e CPF verificados com sucesso!✅\n\nDados salvos com sucesso! ✅\n\nCaso queria modificar os dados, responda o formulário e refaça a verificação de identidade."
+      );
 
       try {
-        const res = await fetch("https://api.ocr.space/parse/image", {
-          method: "POST",
-          body: formData,
-        });
+        dados.cpf = cpfExtraido.replace(/\D/g, "");
 
-        const data = await res.json();
-        const texto = data?.ParsedResults?.[0]?.ParsedText || "";
-        console.log(texto)
-        const encontrados = texto.match(/\d{3}\.?\d{3}\.?\d{3}-?\d{2}/g) || [];
+        const query = await db
+          .collection("cadastros")
+          .where("cpf", "==", dados.cpf)
+          .get();
 
-        const dados = JSON.parse(sessionStorage.getItem("dadosCadastro")) || {};
-        const nomeCadastro = dados.nome || "";
-        const nomePartes = nomeCadastro.toLowerCase().split(/\s+/); // quebra em palavras
-
-        const textoOCR = texto.toLowerCase();
-
-        // verifica se pelo menos uma parte do nome está no texto da imagem
-        const nomeEncontrado = nomePartes.some((parte) =>
-          textoOCR.includes(parte)
-        );
-
-        if (!nomeEncontrado) {
-          alert(`❌ Nome informado (${nomeCadastro}) não foi reconhecido na imagem.`);
-          return;
-        }
-
-        let cpfExtraido = "";
-
-        for (const item of encontrados) {
-          const numeros = item.replace(/\D/g, "");
-          if (validarCPF(numeros)) {
-            cpfExtraido = numeros;
-            break;
-          }
-        }
-
-        if (!cpfExtraido) {
-          alert("❌ Nenhum CPF válido foi detectado na imagem.");
-          return;
-        }
-
-        if (cpfExtraido === cpfEsperado) {
-          try {
-            const dados = JSON.parse(sessionStorage.getItem("dadosCadastro"));
-            if (dados) {
-              dados.verificacaoDocumento = "verificado";
-              dados.verificadoEm = new Date();
-              try {
-                const query = await db
-                  .collection("cadastros")
-                  .where("cpf", "==", cpfEsperado)
-                  .get();
-                if (!query.empty) {
-                  await query.docs[0].ref.update(dados);
-                } else {
-                  await db.collection("cadastros").add(dados);
-                }
-                sessionStorage.removeItem("dadosCadastro");
-                alert(
-                  "✅ Verificação concluída com sucesso! Dados salvos! ✅\n\nPara alterá-los, basta refazer o cadastro e a autenticação."
-                );
-                window.location.href = "index.html";
-              } catch (err) {
-                console.error("Erro ao salvar no Firebase:", err);
-                alert("Erro ao salvar os dados. Verifique o console.");
-              }
-            }
-          } catch (firebaseErr) {
-            console.error("Erro ao atualizar Firebase:", firebaseErr);
-            console.log("\n❌ Erro ao atualizar status no Firebase.");
-          }
+        if (!query.empty) {
+          await query.docs[0].ref.update(dados);
+          alert("Cadastro atualizado!");
         } else {
-          alert("❌ O CPF informado não bate com o do documento fornecido.");
+          await db.collection("cadastros").add(dados);
+          alert("Cadastro criado com sucesso!");
         }
+
+        sessionStorage.setItem("dadosCadastro", JSON.stringify(dados));
+        window.location.href = `index.html`;
       } catch (err) {
-        console.error("Erro na análise OCR:", err);
-        alert("Erro ao processar imagem com IA.");
+        console.error("Erro ao salvar:", err);
+        alert("Erro ao salvar. Veja o console.");
       }
-    });
+    } catch (erro) {
+      console.error("Erro ao processar imagem:", erro);
+      alert(
+        "Erro ao processar a imagem. Verifique sua conexão ou tente novamente."
+      );
+    }
+  };
+
+  reader.readAsDataURL(file);
+};
+
+document.getElementById("uploadForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  enviar();
 });
