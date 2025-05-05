@@ -41,53 +41,6 @@ Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** 
 │   └── firebaseConfig.js   # Configuração do Firebase
 ├── README.md               # Documentação do projeto
 ```
----
----
----
-
-
-
-#  📄 Formulário Know Your Fan - Furia
-
-Acesse o projeto em: https://furia-form.vercel.app/
-
-## 📄 Com Sistema de Verificação de Identidade com OCR + Firebase
-
-Este projeto permite o **cadastro de usuários** e a **validação de documentos de identidade (RG/CNH)** com uso de **OCR (Reconhecimento Óptico de Caracteres)** da **API do Google Vision** e **Firebase Firestore** como banco de dados.
-
----
-
-## 🚀 Funcionalidades
-
-- 🧾 Cadastro de usuário com nome, CPF, endereço, redes sociais, interesses e outros dados.
-- 📷 Upload de imagem do documento para verificação automática do **nome e CPF**.
-- ✅ Validação de dados extraídos via OCR com os dados do cadastro.
-- 🔐 Salvamento no Firestore, com atualização automática se o CPF já existir.
-
----
-
-## 🛠️ Tecnologias Usadas
-
-- HTML5, CSS3 e JavaScript
-- [OCR Google Cloud Vision API](https://cloud.google.com/vision)
-- Firebase Firestore
-- Bootstrap 5
-- ViaCEP (busca de endereço por CEP)
-
----
-
-## 📁 Estrutura dos Arquivos
-
-```
-📦 raiz do projeto
-├── index.html             # Página de cadastro do usuário
-├── upload.html            # Página de envio de imagem para verificação
-├── js/
-│   ├── app.js             # Lógica do formulário de cadastro
-│   ├── upload.js          # Lógica da verificação por imagem
-│   └── firebaseConfig.js  # Configuração do Firebase
-└── README.md              # Documentação do projeto
-```
 
 ---
 
