@@ -87,6 +87,7 @@ const db = firebase.firestore();
 
 - O CPF da imagem deve ser válido (checagem de dígitos verificadores).
 - O nome extraído deve bater com o nome do cadastro (comparação por partes normalizadas).
+- O cpf extraído deve bater com o cpf do cadastro.
 
 ---
 
@@ -100,11 +101,7 @@ const db = firebase.firestore();
 
 ## 🧑‍💻 Autor
 
-Desenvolvido por [Seu Nome Aqui]  
-Contato: [seu@email.com]
+Desenvolvido por Bruno Menezes
 
 ---
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT.
