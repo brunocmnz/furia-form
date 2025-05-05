@@ -5,9 +5,9 @@ Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** 
 O sistema está **hospedado na plataforma Vercel** e pode ser acessado publicamente pelo link abaixo:
 
 🔗 <strong>Acesse agora</strong>: na 
-<a href="https://furia-form.vercel.app" target="_blank">Vercel</a> 
+<a href="https://furia-form.vercel.app" target="_blank" rel="noopener noreferrer">Vercel</a> 
 <strong>ou em</strong> 
-<a href="https://celadon-dragon-48d09c.netlify.app/" target="_blank">Netlify</a>
+<a href="https://celadon-dragon-48d09c.netlify.app" target="_blank" rel="noopener noreferrer">Netlify</a>
 
 ---
 
