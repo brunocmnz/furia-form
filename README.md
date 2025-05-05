@@ -1,4 +1,7 @@
 #  📄 Formulário Know Your Fan - Furia
+
+Acesse o projeto em: https://furia-form.vercel.app/
+
 ## 📄 Com Sistema de Verificação de Identidade com OCR + Firebase
 
 Este projeto permite o **cadastro de usuários** e a **validação de documentos de identidade (RG/CNH)** com uso de **OCR (Reconhecimento Óptico de Caracteres)** da **API do Google Vision** e **Firebase Firestore** como banco de dados.
