@@ -1,43 +1,47 @@
-#  📄 Formulário Know Your Fan - Furia
+# 📄 Formulário Know Your Fan - FURIA
 
-Acesse o projeto em: https://furia-form.vercel.app/
+Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** e **JavaScript puro (sem frameworks)**. Ele implementa um fluxo de cadastro de fãs com **verificação automatizada de identidade** (nome e CPF) usando **OCR da API Google Cloud Vision** e integração com **Firebase Firestore** como banco de dados.
 
-## 📄 Com Sistema de Verificação de Identidade com OCR + Firebase
+O sistema está **hospedado na plataforma Vercel** e pode ser acessado publicamente pelo link abaixo:
 
-Este projeto permite o **cadastro de usuários** e a **validação de documentos de identidade (RG/CNH)** com uso de **OCR (Reconhecimento Óptico de Caracteres)** da **API do Google Vision** e **Firebase Firestore** como banco de dados.
+🔗 **Acesse agora**: [https://furia-form.vercel.app](https://furia-form.vercel.app)
 
 ---
 
 ## 🚀 Funcionalidades
 
-- 🧾 Cadastro de usuário com nome, CPF, endereço, redes sociais, interesses e outros dados.
-- 📷 Upload de imagem do documento para verificação automática do **nome e CPF**.
-- ✅ Validação de dados extraídos via OCR com os dados do cadastro.
-- 🔐 Salvamento no Firestore, com atualização automática se o CPF já existir.
+- 🧾 **Cadastro de usuário** com nome, CPF, endereço, redes sociais e interesses.
+- 📦 Armazenamento dos dados no **Firebase Firestore**.
+- 📷 **Upload de imagem** (RG ou CNH) para extração de texto com OCR.
+- 🔎 Verificação automática se o **nome e CPF da imagem** batem com os dados informados.
+- ✅ **Atualização automática** do cadastro se o CPF já estiver no banco.
+- 🌐 Uso 100% web, compatível com **dispositivos móveis**.
 
 ---
 
-## 🛠️ Tecnologias Usadas
+## 🛠️ Tecnologias Utilizadas
 
-- HTML5, CSS3 e JavaScript
-- [OCR Google Cloud Vision API](https://cloud.google.com/vision)
-- Firebase Firestore
-- Bootstrap 5
-- ViaCEP (busca de endereço por CEP)
+- HTML5
+- CSS3
+- [Bootstrap 5](https://getbootstrap.com)
+- JavaScript (puro, client-side)
+- [Google Cloud Vision API (OCR)](https://cloud.google.com/vision)
+- [Firebase Firestore](https://firebase.google.com/docs/firestore)
+- [ViaCEP](https://viacep.com.br) (busca de endereço por CEP)
 
 ---
 
-## 📁 Estrutura dos Arquivos
+## 📁 Estrutura de Arquivos
 
-```
-📦 raiz do projeto
-├── index.html             # Página de cadastro do usuário
-├── upload.html            # Página de envio de imagem para verificação
+```bash
+📂 raiz do projeto
+├── index.html              # Formulário de cadastro
+├── upload.html             # Página de upload de imagem para verificação
 ├── js/
-│   ├── app.js             # Lógica do formulário de cadastro
-│   ├── upload.js          # Lógica da verificação por imagem
-│   └── firebaseConfig.js  # Configuração do Firebase
-└── README.md              # Documentação do projeto
+│   ├── app.js              # Lógica de validação e envio do formulário
+│   ├── upload.js           # Lógica de OCR e verificação de identidade
+│   └── firebaseConfig.js   # Configuração do Firebase
+├── README.md               # Documentação do projeto
 ```
 
 ---
