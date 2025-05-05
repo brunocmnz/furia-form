@@ -35,8 +35,8 @@ const enviar = () => {
     );
 
     try {
+      const apiKey = process.env.GOOGLE_API_KEY;
       const resposta = await fetch(
-        const apiKey = process.env.GOOGLE_API_KEY; // no Vercel ou frontend
         `https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`,
         {
           method: "POST",
