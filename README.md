@@ -40,7 +40,7 @@ Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** 
 │   ├── upload.js           # Lógica de OCR e verificação de identidade
 │   └── firebaseConfig.js   # Configuração do Firebase
 ├── README.md               # Documentação do projeto
-
+```
 ---
 ---
 ---
