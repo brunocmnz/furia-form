@@ -1,3 +1,52 @@
+# 📄 Formulário Know Your Fan - FURIA
+
+Acesse o projeto em: [https://furia-form.vercel.app](https://furia-form.vercel.app)
+
+Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** e **JavaScript puro (sem frameworks)**. Ele implementa um fluxo de cadastro de fãs com **verificação automatizada de identidade** (nome e CPF) usando **OCR da API Google Cloud Vision** e integração com **Firebase Firestore** como banco de dados.
+
+---
+
+## 🚀 Funcionalidades
+
+- 🧾 **Cadastro de usuário** com nome, CPF, endereço, redes sociais e interesses.
+- 📦 Armazenamento dos dados no **Firebase Firestore**.
+- 📷 **Upload de imagem** (RG ou CNH) para extração de texto com OCR.
+- 🔎 Verificação automática se o **nome e CPF da imagem** batem com os dados informados.
+- ✅ **Atualização automática** do cadastro se o CPF já estiver no banco.
+- 🌐 Uso 100% web, compatível com **dispositivos móveis**.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- HTML5
+- CSS3
+- [Bootstrap 5](https://getbootstrap.com)
+- JavaScript (puro, client-side)
+- [Google Cloud Vision API (OCR)](https://cloud.google.com/vision)
+- [Firebase Firestore](https://firebase.google.com/docs/firestore)
+- [ViaCEP](https://viacep.com.br) (busca de endereço por CEP)
+
+---
+
+## 📁 Estrutura de Arquivos
+
+```bash
+📂 raiz do projeto
+├── index.html              # Formulário de cadastro
+├── upload.html             # Página de upload de imagem para verificação
+├── js/
+│   ├── app.js              # Lógica de validação e envio do formulário
+│   ├── upload.js           # Lógica de OCR e verificação de identidade
+│   └── firebaseConfig.js   # Configuração do Firebase
+├── README.md               # Documentação do projeto
+
+---
+---
+---
+
+
+
 #  📄 Formulário Know Your Fan - Furia
 
 Acesse o projeto em: https://furia-form.vercel.app/
