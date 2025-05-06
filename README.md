@@ -4,8 +4,8 @@ Este projeto foi totalmente desenvolvido com **HTML**, **CSS**, **Bootstrap 5** 
 
 O sistema está **hospedado na plataforma Vercel** e pode ser acessado publicamente pelo link abaixo:
 
-🔗 **Acesse agora**: [FuriaForm](https://celadon-dragon-48d09c.netlify.app/)
-<!--- [FuriaForm](https://furia-form.vercel.app)--->
+🔗 **Acesse agora em**: [FuriaForm](https://celadon-dragon-48d09c.netlify.app/) ou [FuriaForm](https://furia-form.vercel.app/) 
+
 
 ---
 
